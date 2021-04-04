@@ -48,4 +48,4 @@ class LinkedList::Iterator
     Value *operator->();
 };
 
-#endif
+#endif /* LINKEDLIST_H_ */
