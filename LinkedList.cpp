@@ -5,10 +5,29 @@ Date: April 7 2021
 */
 
 #include "LinkedList.hpp"
+#include <iostream>
 
-LinkedList::Entry
+// Entry struct
+struct LinkedList::Entry
 {
-    LinkedList::Value value;
-    LinkedList::Entry* next_entry;
-}
+    Value value;
+    Entry* next_entry;
+};
 
+// Constructor
+LinkedList::LinkedList()
+{
+    head_ = nullptr;
+};
+
+// Destructor
+LinkedList::~LinkedList()
+{
+   Entry* curr = head_;
+   while(curr != nullptr)
+   {
+     Entry* next = curr->next_entry;
+     delete curr;
+     curr = next;
+   }
+};
