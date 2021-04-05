@@ -10,7 +10,7 @@ Date: April 7 2021
 // Entry struct
 struct LinkedList::Entry
 {
-    Value val;
+    Value* val;
     Entry* next_entry;
 };
 
@@ -41,7 +41,7 @@ void LinkedList::push_front(const Value &value)
   // new node
   Entry* elem= new Entry; 
   // set value and old head
-  elem->val = value;
+  elem->val = new Value(value.first, value.second);
   elem->next_entry = head_;
   // make new node entry the new head
   head_ = elem;
@@ -95,11 +95,11 @@ LinkedList::Iterator& LinkedList::Iterator::operator++()
 // Iterator dereference (*) operator
 LinkedList::Value& LinkedList::Iterator::operator*()
 {
-  return entry_->val;
+  return *entry_->val;
 };
 
 // Iterator assignment (->) operator
 LinkedList::Value* LinkedList::Iterator::operator->()
 {
-  return &entry_->val;
+  return entry_->val;
 };
