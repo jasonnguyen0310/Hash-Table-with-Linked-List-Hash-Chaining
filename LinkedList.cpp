@@ -47,18 +47,59 @@ void LinkedList::push_front(const Value &value)
   head_ = elem;
 };
 
-// begin
+// begin()
 // return an iterator at the head of the list
 
 LinkedList::Iterator LinkedList::begin()
 {
   return Iterator(head_);
-}
+};
 
-// end
+// end()
 // return an iterator at the end of the list
 
 LinkedList::Iterator LinkedList::end()
 {
   return Iterator(nullptr);
-}
+};
+
+// Iterator constructor for class Linked List
+LinkedList::Iterator::Iterator(Entry *value)
+{
+  entry_ = value;
+};
+
+// Iteartor comparison (equal) operator
+bool LinkedList::Iterator::operator==(const Iterator &other)
+{
+  return entry_ == other.entry_;
+};
+
+// Iterator comparison (not equal) operator
+
+bool LinkedList::Iterator::operator!=(const Iterator &other)
+{
+  return entry_ != other.entry_;
+};
+
+// Iterator increment (++) operator
+LinkedList::Iterator& LinkedList::Iterator::operator++()
+{
+  if (entry_)
+  {
+    entry_ = entry_->next_entry;
+  }
+  return *this;
+};
+
+// Iterator dereference (*) operator
+LinkedList::Value& LinkedList::Iterator::operator*()
+{
+  return entry_->val;
+};
+
+// Iterator assignment (->) operator
+LinkedList::Value* LinkedList::Iterator::operator->()
+{
+  return &entry_->val;
+};
