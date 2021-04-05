@@ -10,7 +10,7 @@ Date: April 7 2021
 // Entry struct
 struct LinkedList::Entry
 {
-    Value value;
+    Value val;
     Entry* next_entry;
 };
 
@@ -30,4 +30,20 @@ LinkedList::~LinkedList()
      delete curr;
      curr = next;
    }
+   head_ = nullptr;
 };
+
+// push_front (const Value &value)
+// adds new element to the start of the list and updates the head pointer
+
+void LinkedList::push_front(const Value &value)
+{
+  // new node
+  Entry* elem= new Entry; 
+  // set value and old head
+  elem->val = value;
+  elem->next_entry = head_;
+  // make new node entry the new head
+  head_ = elem;
+};
+
