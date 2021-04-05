@@ -47,3 +47,18 @@ void LinkedList::push_front(const Value &value)
   head_ = elem;
 };
 
+// begin
+// return an iterator at the head of the list
+
+LinkedList::Iterator LinkedList::begin()
+{
+  return Iterator(head_);
+}
+
+// end
+// return an iterator at the end of the list
+
+LinkedList::Iterator LinkedList::end()
+{
+  return Iterator(nullptr);
+}
