@@ -5,6 +5,8 @@ Date: April 7 2021
 */
 
 #include "HashMap.hpp"
+#include <iostream>
+using namespace std;
 
 // Constructor
 HashMap::HashMap()
@@ -39,15 +41,15 @@ HashMap::~HashMap()
 // begin iterator has a pointer to the first bucket
 HashMap::Iterator HashMap::begin()
 {
-    LinkedList *head = &buckets_[0];
-    return Iterator(head, head->begin());
+    LinkedList *head_of_hashmap = &buckets_[0];
+    return Iterator(head_of_hashmap, head_of_hashmap->begin());
 };
 
 // end iterator has pointer to the extra bucket that was allocated
 HashMap::Iterator HashMap::end()
 {
-    LinkedList *end = &buckets_[buckets_size_ + 1];
-    return Iterator(end, end->begin());
+    LinkedList *end_of_hashmap = &buckets_[buckets_size_ + 1];
+    return Iterator(end_of_hashmap, end_of_hashmap->begin());
 };
 
 // get_bucket
@@ -82,7 +84,7 @@ HashMap::Iterator HashMap::find(const Key &key)
             return Iterator(pointer_to_bucket, it);
         }
     }
-    return Iterator(pointer_to_bucket, bucket.end());
+    return end();
 };
 
 // insert
@@ -92,7 +94,7 @@ std::pair<HashMap::Iterator, bool> HashMap::insert(const Pair &pair)
     Size load_factor = size_ / buckets_size_;
 
     // deals with reallocation of buckets_
-    if (load_factor >= 2)
+    if (load_factor > 2)
     {
         Size old_size_ = buckets_size_;
         LinkedList* old_buckets_ = buckets_;
@@ -104,28 +106,22 @@ std::pair<HashMap::Iterator, bool> HashMap::insert(const Pair &pair)
         size_ = old_size_;
         delete[] old_buckets_;
     }
-    // obtain bucket the key is in
-    LinkedList& bucket = get_bucket(pair.first);
 
-    // pointer to the bucket that key is in
-    LinkedList *pointer_to_bucket = &bucket;
-
-    for (LinkedList::Iterator it= bucket.begin(); it != bucket.end(); ++it)
+    auto it = find(pair.first);
+    if (it == end())
     {
-        // test_key: deferenced LinkedList pointer which contains a Value
-        LinkedList::Value& test_key = *it; 
-        // tests the first value which is test_key.first against the real parameter key
-        if (test_key.first == pair.first)
-        {
-            return std::make_pair(Iterator(pointer_to_bucket, it), false);
-        }
+        get_bucket(pair.first).push_front(pair);
+        size_ += 1;
+        return std::make_pair(it, true); 
     }
-    bucket.push_front(pair);
-    size_ += 1;
-    return std::make_pair(Iterator(pointer_to_bucket, bucket.end()), true);
+    else
+    {
+        return std::make_pair(it, false);
+    }
 };
 
 // operator [] (indexing)
+// work on this
 HashMap::Value& HashMap::operator[](const Key &key)
 {
     return (*insert(std::make_pair(key, 0)).first).second;
@@ -137,6 +133,7 @@ HashMap::Iterator::Iterator(LinkedList *bucket, LinkedList::Iterator entry) : en
     while (bucket->begin() == bucket->end())
     {
         bucket++;
+        entry_ = bucket->begin();
     }
     bucket_ = bucket;
 };
