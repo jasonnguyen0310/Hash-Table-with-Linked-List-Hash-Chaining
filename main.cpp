@@ -12,16 +12,20 @@ using namespace std;
 
 int main()
 {
+    // declare HashMap
     HashMap h;
+
     string word;
+
     while(cin >> word)
     {
-        h[word];
+        h[word] += 1;
     }
 
     for (auto it = h.begin(); it != h.end(); ++it)
     {
-        cout << it->first << "  -  " << it->second;
+        cout << (*it).first << "  -  " << (*it).second << endl;
     }
+
     return 0;
 }
