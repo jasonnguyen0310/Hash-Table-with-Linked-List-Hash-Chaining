@@ -153,7 +153,18 @@ bool HashMap::Iterator::operator!=(const Iterator &other)
 // Iterator prefix next (++) operator
 HashMap::Iterator& HashMap::Iterator::operator++()
 {
-    bucket_++;
+    ++entry_;
+    if (entry_ == bucket_->end())
+    {
+        bucket_++;
+        entry_ = bucket_->begin();
+        while (bucket_->begin() == bucket_->end())
+        {
+            bucket_++;
+            entry_ = bucket_->begin();
+        }
+    }
+
     return *this;
 };
 
