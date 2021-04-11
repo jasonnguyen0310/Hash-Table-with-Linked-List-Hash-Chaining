@@ -19,6 +19,9 @@ int main()
 
     while(cin >> word)
     {
+        // inserts word into hashmap
+        h[word];
+        // increment by 1
         h[word] += 1;
     }
 
