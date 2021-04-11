@@ -27,7 +27,7 @@ void HashMap::initialize_storage(Size buckets_size)
     // 8 entries: 7 real entries, 1 dummy entry
 
     // adds a dummy entry to this extra list: default values "dummy", 0
-    buckets_[buckets_size + 1].push_front(Pair("dummy", 0));
+    buckets_[buckets_size].push_front(Pair("dummy", 0));
 };
 
 
@@ -90,6 +90,8 @@ HashMap::Iterator HashMap::find(const Key &key)
 // insert
 std::pair<HashMap::Iterator, bool> HashMap::insert(const Pair &pair)
 {
+
+    /*
     // check before insertion whether there are more than twice as many elements in the map than there are buckets
     Size load_factor = size_ / buckets_size_;
 
@@ -106,7 +108,7 @@ std::pair<HashMap::Iterator, bool> HashMap::insert(const Pair &pair)
         size_ = old_size_;
         delete[] old_buckets_;
     }
-
+    */
     auto it = find(pair.first);
     if (it == end())
     {
