@@ -5,8 +5,6 @@ Date: April 7 2021
 */
 
 #include "HashMap.hpp"
-#include <iostream>
-using namespace std;
 
 // Constructor
 HashMap::HashMap()
