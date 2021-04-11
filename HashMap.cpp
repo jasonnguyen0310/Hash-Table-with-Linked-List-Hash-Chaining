@@ -128,7 +128,6 @@ std::pair<HashMap::Iterator, bool> HashMap::insert(const Pair &pair)
 };
 
 // operator [] (indexing)
-// work on this
 HashMap::Value& HashMap::operator[](const Key &key)
 {
     return (*insert(std::make_pair(key, 0)).first).second;
