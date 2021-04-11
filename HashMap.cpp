@@ -22,6 +22,7 @@ HashMap::HashMap()
 // allocate array of lists dynamically
 void HashMap::initialize_storage(Size buckets_size)
 {
+    size_ = 0;
     buckets_size_ = buckets_size;
     buckets_ = new LinkedList[buckets_size + 1]; // dynamically allocates memory for HashMap array
     // 8 entries: 7 real entries, 1 dummy entry
@@ -48,7 +49,7 @@ HashMap::Iterator HashMap::begin()
 // end iterator has pointer to the extra bucket that was allocated
 HashMap::Iterator HashMap::end()
 {
-    LinkedList *end_of_hashmap = &buckets_[buckets_size_ + 1];
+    LinkedList *end_of_hashmap = &buckets_[buckets_size_];
     return Iterator(end_of_hashmap, end_of_hashmap->begin());
 };
 
@@ -91,7 +92,7 @@ HashMap::Iterator HashMap::find(const Key &key)
 std::pair<HashMap::Iterator, bool> HashMap::insert(const Pair &pair)
 {
 
-    /*
+    
     // check before insertion whether there are more than twice as many elements in the map than there are buckets
     Size load_factor = size_ / buckets_size_;
 
@@ -103,12 +104,16 @@ std::pair<HashMap::Iterator, bool> HashMap::insert(const Pair &pair)
         initialize_storage(size_);
         for (int i = 0; i < old_size_; i++)
         {
-            buckets_[i] = old_buckets_[i];
+            for (auto it = old_buckets_[i].begin(); it != old_buckets_[i].end(); ++it)
+            {
+                insert(*it);
+                size_ += 1;
+            }
         }
-        size_ = old_size_;
+
         delete[] old_buckets_;
     }
-    */
+    
     auto it = find(pair.first);
     if (it == end())
     {
