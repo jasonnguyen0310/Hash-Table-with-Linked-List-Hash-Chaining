@@ -1,6 +1,6 @@
 # Hash Table with Linked List Hash Chaining in C++
 
-This version of the Hash Table with Linked List Hash Chaining is written using C++.
+This version of the Hash Table with Linked List Hash Chaining is written using [C++](https://www.cplusplus.com/).
 
 ## What is a hash-table?
 
