@@ -1,4 +1,4 @@
-# Hash-Table-with-Linked-List-Hash-Chaining in C++
+# Hash Table with Linked List Hash Chaining in C++
 
 ## What is a hash-table?
 
