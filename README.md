@@ -26,3 +26,9 @@ Now what we do is make a linked list corresponding to the particular bucket of t
 If n be the total number of buckets we decided to fill initially say 10 and let’s say 7 of them got filled now, so the load factor is 7/10=0.7. 
 
 In our implementation whenever we add a key-value pair to the Hash Table we check the load factor if it is greater than 0.7 we double the size of our hash table.
+
+
+## Citation
+
+All explanations above are provided by GeeksForGeeks. 
+Link: https://www.geeksforgeeks.org/implementing-our-own-hash-table-with-separate-chaining-in-java/
