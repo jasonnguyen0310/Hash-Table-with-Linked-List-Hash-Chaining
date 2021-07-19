@@ -1,5 +1,7 @@
 # Hash Table with Linked List Hash Chaining in C++
 
+This version of the Hash Table with Linked List Hash Chaining is written using C++.
+
 ## What is a hash-table?
 
 A hash table is used to fetch, add and remove an element in constant time.
