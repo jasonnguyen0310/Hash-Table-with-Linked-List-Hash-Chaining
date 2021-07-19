@@ -1,6 +1,6 @@
 # Hash-Table-with-Linked-List-Hash-Chaining in C++
 
-What is a hash-table?
+## What is a hash-table?
 
 A hash table is used to fetch, add and remove an element in constant time.
 
@@ -13,5 +13,5 @@ Hash code is an Integer number (random or non-random). IWe will use the hash cod
 The entire process ensures that for any key, we get an integer position within the size of the Hash Table to insert the corresponding value.
 
 
-Hash Collisions
+## Hash Collisions
 
