@@ -30,6 +30,10 @@ If n be the total number of buckets we decided to fill initially say 10 and letâ
 In our implementation whenever we add a key-value pair to the Hash Table we check the load factor if it is greater than 0.7 we double the size of our hash table.
 
 
+## The Program
+The program uses the hash table as a map from strings to integers to calculate the word frequency of every word of a text read from standard input and write these frequencies to standard output.
+
+
 ## Citation
 
 All explanations above are provided by GeeksForGeeks. 
